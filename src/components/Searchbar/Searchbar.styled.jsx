@@ -1,5 +1,6 @@
-import styled from 'styled-components';
 import { Form, Field } from 'formik';
+
+import styled from 'styled-components';
 
 export const SearchbarStyled = styled.header`
   top: 0;
@@ -19,6 +20,7 @@ export const SearchbarStyled = styled.header`
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `;
+
 export const StyledForm = styled(Form)`
   display: flex;
   align-items: center;
@@ -28,6 +30,7 @@ export const StyledForm = styled(Form)`
   border-radius: 3px;
   overflow: hidden;
 `;
+
 export const Button = styled.button`
   display: inline-block;
   width: 48px;

@@ -1,6 +1,10 @@
+import { BiSearch } from 'react-icons/bi';
+import toast from 'react-hot-toast';
+import { Formik } from 'formik';
+
 import { StyledForm, Button, Input, SearchbarStyled } from './Searchbar.styled';
 
-import { Formik } from 'formik';
+const notify = () => toast('Here is your toast.');
 
 export const Searchbar = ({ onSubmitFilter }) => {
   return (
@@ -10,14 +14,20 @@ export const Searchbar = ({ onSubmitFilter }) => {
           search: '',
         }}
         onSubmit={(values, actions) => {
-          console.log(values);
-          onSubmitFilter(values);
-          actions.resetForm();
+          if (values.search === '') {
+            return notify;
+          } else {
+            console.log(values);
+            onSubmitFilter(values.search);
+            actions.resetForm();
+          }
         }}
       >
         <StyledForm>
           <Button type="submit">
-            <span>Search</span>
+            <span>
+              <BiSearch />
+            </span>
           </Button>
 
           <Input
