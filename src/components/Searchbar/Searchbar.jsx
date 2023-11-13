@@ -4,9 +4,9 @@ import { Formik } from 'formik';
 
 import { StyledForm, Button, Input, SearchbarStyled } from './Searchbar.styled';
 
-const notify = () => toast('Here is your toast.');
-
 export const Searchbar = ({ onSubmitFilter }) => {
+  const notify = () => toast('Введи щось для пошуку');
+  console.log(notify);
   return (
     <SearchbarStyled>
       <Formik
@@ -14,7 +14,7 @@ export const Searchbar = ({ onSubmitFilter }) => {
           search: '',
         }}
         onSubmit={(values, actions) => {
-          if (values.search === '') {
+          if (!values.search) {
             return notify;
           } else {
             console.log(values);

@@ -18,6 +18,7 @@ export class ImageGalleryItem extends Component {
 
     return (
       <Item key={image.id}>
+        {console.log(image)}
         <Img
           onClick={this.openModal}
           src={image.webformatURL}
