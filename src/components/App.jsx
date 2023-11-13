@@ -2,12 +2,12 @@ import { Component } from 'react';
 import { Loader } from './Loader/Loader';
 import { getSearch } from './API/api';
 
-import { AppBox } from './App.styled';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallary';
 import { Button } from './Button/Button';
 
 import { GlobalStyle } from 'GlobalStyle';
+import { AppBox } from './App.styled';
 
 export class App extends Component {
   state = {

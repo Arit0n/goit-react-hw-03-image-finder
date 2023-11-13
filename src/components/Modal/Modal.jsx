@@ -1,5 +1,3 @@
-import * as basicLightbox from 'basiclightbox';
-
 import { ModalBox, StyledModal } from './Modal.styled';
 
 export const Modal = ({ visible, gallery }) => {
