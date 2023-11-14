@@ -56,7 +56,7 @@ export class App extends Component {
   };
 
   render() {
-    const { image, search, page, visibleModal, loading, total } = this.state;
+    const { image, page, loading, total } = this.state;
     return (
       <AppBox>
         <Searchbar onSubmitFilter={this.onSubmitForm} />
