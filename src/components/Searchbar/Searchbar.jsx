@@ -6,7 +6,7 @@ import { StyledForm, Button, Input, SearchbarStyled } from './Searchbar.styled';
 
 export const Searchbar = ({ onSubmitFilter }) => {
   const notify = () => toast('Введи щось для пошуку');
-  console.log(notify);
+
   return (
     <SearchbarStyled>
       <Formik
@@ -17,7 +17,6 @@ export const Searchbar = ({ onSubmitFilter }) => {
           if (!values.search) {
             return notify;
           } else {
-            console.log(values);
             onSubmitFilter(values.search);
             actions.resetForm();
           }

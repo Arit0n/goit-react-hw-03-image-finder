@@ -16,18 +16,16 @@ export class ImageGalleryItem extends Component {
 
   render() {
     const { image } = this.props;
+    const { visibleModal } = this.state;
 
     return (
       <Item key={image.id}>
-        {console.log(image)}
         <Img
           onClick={this.openModal}
           src={image.webformatURL}
           alt={image.tags}
         />
-        {this.state.visibleModal === true ? (
-          <Modal visible={this.openModal} gallery={image} />
-        ) : null}
+        {visibleModal && <Modal visible={this.openModal} gallery={image} />}
       </Item>
     );
   }

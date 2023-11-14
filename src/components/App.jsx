@@ -19,26 +19,23 @@ export class App extends Component {
     total: 1,
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps, prevState) {
     if (
       prevState.search !== this.state.search ||
       prevState.page !== this.state.page
     ) {
-      this.setState({ loading: true });
-      getSearch(this.state.search, this.state.page)
-        .then(res => res.json())
-        .then(result =>
-          this.setState(prevState => ({
-            image: [...prevState.image, ...result.hits],
-            total: result.total,
-          }))
-        )
-        .catch(error => {
-          this.setState({ error: error.message });
-        })
-        .finally(() => {
-          this.setState({ loading: false });
-        });
+      try {
+        this.setState({ loading: true });
+        const dataObj = await getSearch(this.state.search, this.state.page);
+        console.log(dataObj);
+        this.setState(prevState => ({
+          image: [...prevState.image, ...dataObj.hits],
+          total: dataObj.total,
+        }));
+      } catch (error) {
+      } finally {
+        this.setState({ loading: false });
+      }
     }
   }
 
@@ -46,7 +43,6 @@ export class App extends Component {
     this.setState(prevSt => ({
       page: prevSt.page + 1,
     }));
-    console.log(this.state.image, this.state.page);
   };
 
   onSubmitForm = newSearch => {
@@ -60,14 +56,13 @@ export class App extends Component {
   };
 
   render() {
+    const { image, search, page, visibleModal, loading, total } = this.state;
     return (
       <AppBox>
         <Searchbar onSubmitFilter={this.onSubmitForm} />
-        <ImageGallery gallery={this.state.image} openModal={this.openModal} />
-        {this.state.loading && <Loader />}
-        {this.state.total / 12 > this.state.page && (
-          <Button clickLoad={this.clickLoad} />
-        )}
+        <ImageGallery gallery={image} />
+        {loading && <Loader />}
+        {total / 12 > page && <Button clickLoad={this.clickLoad} />}
         <GlobalStyle />
       </AppBox>
     );
